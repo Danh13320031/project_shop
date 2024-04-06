@@ -5,56 +5,62 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import * as React from 'react';
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Register from '../../features/Auth/components/Register/Register.jsx';
 
+// Styled MUI
 const BoxCom = styled(Box)({
   flexGrow: 1,
 });
-
 const CodeIconCom = styled(CodeIcon)(({ theme }) => ({
-  flexGrow: theme.spacing(2),
+  marginRight: theme.spacing(2),
 }));
-
-const NavLinkAndLinkCom = styled(
-  NavLink,
-  Link
-)({
-  color: 'white',
+const TypographyCom = styled(Typography)({
+  flexGrow: 1,
+});
+const LinkCom = styled(Link)({
+  color: '#fff',
+  textDecoration: 'none',
+});
+const NavLinkCom = styled(NavLink)({
+  color: '#fff',
   textDecoration: 'none',
 });
 
+// Component
 function Header() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpen(false, { reason: String });
   };
+
   return (
     <BoxCom>
       <AppBar position="static">
         <Toolbar>
           <CodeIconCom />
 
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            <NavLinkAndLinkCom to="/">EZ Shop</NavLinkAndLinkCom>
-          </Typography>
+          <TypographyCom variant="h6">
+            <LinkCom to="/">EZ Shop</LinkCom>
+          </TypographyCom>
 
-          <NavLinkAndLinkCom to="/todos">
+          <NavLinkCom to="/todos">
             <Button color="inherit">Todos</Button>
-          </NavLinkAndLinkCom>
+          </NavLinkCom>
 
-          <NavLinkAndLinkCom to="/albums">
+          <NavLinkCom to="/albums">
             <Button color="inherit">Albums</Button>
-          </NavLinkAndLinkCom>
+          </NavLinkCom>
 
           <Button color="inherit" onClick={handleClickOpen}>
             Register
@@ -62,15 +68,15 @@ function Header() {
         </Toolbar>
       </AppBar>
 
-      <Dialog open={open} aria-braillelabel="form-dialog-title">
+      <Dialog onClose={handleClose} open={open} aria-braillelabel="form-dialog-title">
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
-          </DialogContentText>
+          <Register />
         </DialogContent>
+
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
         </DialogActions>
       </Dialog>
     </BoxCom>
