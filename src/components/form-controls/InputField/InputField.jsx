@@ -14,7 +14,6 @@ function InputField(props) {
   const { form, name, label, disable } = props;
   const { formState } = form;
   const hasError = formState.errors[name]?.message;
-  console.log(formState.errors);
 
   return (
     <Controller

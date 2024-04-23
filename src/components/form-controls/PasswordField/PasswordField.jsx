@@ -22,7 +22,6 @@ function PasswordField(props) {
   const { form, name, label, disable } = props;
   const { formState } = form;
   const hasError = formState.touchedFields[name] && formState.errors[name]?.message;
-  console.log(formState.errors, formState.touchedFields[name]);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
