@@ -62,6 +62,10 @@ function Header() {
             <Button color="inherit">Albums</Button>
           </NavLinkCom>
 
+          <NavLinkCom to="/products">
+            <Button color="inherit">Products</Button>
+          </NavLinkCom>
+
           <Button color="inherit" onClick={handleClickOpen}>
             Register
           </Button>
