@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import productApi from '../../../apis/productApi';
 import ProductList from '../components/ProductList';
 import ProductSkeleton from '../components/ProductSkeleton';
+import ProductSort from '../components/ProductSort';
 
 ListPage.propTypes = {};
 
@@ -17,6 +18,7 @@ function ListPage(props) {
   const [filters, setFilter] = useState({
     _page: 1,
     _limit: 9,
+    _sort: 'salePrice:ASC',
   });
 
   useEffect(() => {
@@ -36,10 +38,19 @@ function ListPage(props) {
     })();
   }, [filters]);
 
+  // Pagination
   const handlePageChange = (e, page) => {
     setFilter((prevFilters) => ({
       ...prevFilters,
       _page: page,
+    }));
+  };
+
+  // Sort by price
+  const handleSortChange = (newSortValue) => {
+    setFilter((prevFilters) => ({
+      ...prevFilters,
+      _sort: newSortValue,
     }));
   };
 
@@ -52,6 +63,8 @@ function ListPage(props) {
           </Grid>
 
           <Grid item sm={12} md={9}>
+            <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
+
             <Paper elevation={0}>
               {loading ? <ProductSkeleton length={9} /> : <ProductList data={productList} />}
 
