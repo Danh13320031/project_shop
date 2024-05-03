@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 ProductSort.propTypes = {
-  currentSort: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  currentSort: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 function ProductSort({ currentSort, onChange }) {
