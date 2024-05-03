@@ -4,6 +4,7 @@ import productApi from '../../../apis/productApi';
 import ProductList from '../components/ProductList';
 import ProductSkeleton from '../components/ProductSkeleton';
 import ProductSort from '../components/ProductSort';
+import ProductFilters from '../components/ProductFilters';
 
 ListPage.propTypes = {};
 
@@ -12,7 +13,9 @@ function ListPage(props) {
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
     limit: 9,
-    total: 10,
+    total: {
+      data: 10,
+    },
     page: 1,
   });
   const [filters, setFilter] = useState({
@@ -54,18 +57,27 @@ function ListPage(props) {
     }));
   };
 
+  // Filter
+  const handleFiltersChange = (newFilter) => {
+    setFilter((prevFilters) => ({
+      ...prevFilters,
+      ...newFilter,
+    }));
+  };
+
   return (
     <Box>
       <Container>
-        <Grid container>
+        <Grid container spacing={1}>
           <Grid item sm={12} md={3}>
-            <Paper elevation={0}>Left Column</Paper>
+            <Paper elevation={0}>
+              <ProductFilters filters={filters} onChange={handleFiltersChange} />
+            </Paper>
           </Grid>
 
           <Grid item sm={12} md={9}>
-            <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
-
             <Paper elevation={0}>
+              <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
               {loading ? <ProductSkeleton length={9} /> : <ProductList data={productList} />}
 
               <Box padding="20px 0px" display="flex" justifyContent="center">
