@@ -8,7 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#0288d1',
+      main: '#1976d2',
     },
   },
 });
@@ -24,11 +24,13 @@ const UlTag = styled('ul')(({ theme }) => ({
 }));
 
 const LiTag = styled('li')(({ theme }) => ({
-  marginTop: theme.spacing(1),
+  padding: '7.5px 0px 7.5px 5px',
   transition: '0.4s ease-out',
+  borderRadius: 3,
   ':hover': {
     cursor: 'pointer',
     color: theme.palette.primary.main,
+    backgroundColor: '#F6FAFD',
   },
 }));
 
@@ -65,7 +67,7 @@ function FilterByCategory({ onChange }) {
     <ThemeProvider theme={theme}>
       <BoxCom>
         <Typography variant="subtitle2" fontWeight={'bold'}>
-          DANH MỤC SẢN PHẨM
+          CHỌN LOẠI SẢN PHẨM
         </Typography>
 
         <UlTag>
