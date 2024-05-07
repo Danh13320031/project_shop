@@ -1,9 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { styled } from '@mui/system';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import categoryApi from '../../../../apis/categoryApi';
-import { styled } from '@mui/system';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -45,7 +45,7 @@ function FilterByCategory({ onChange }) {
     (async () => {
       try {
         const response = await categoryApi.getAllCategory();
-        const data = response.data;
+        const data = await response.data;
 
         setCategoryList(
           data.map((x) => ({
@@ -57,7 +57,7 @@ function FilterByCategory({ onChange }) {
         console.log('Failed to fetch category list: ', error);
       }
     })();
-  });
+  }, []);
 
   const handleCategoryClick = (category) => {
     if (onChange) onChange(category.id);

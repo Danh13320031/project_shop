@@ -28,8 +28,8 @@ function ListPage(props) {
     (async () => {
       try {
         const response = await productApi.getAllProduct(filters);
-        const data = response.data.data;
-        const pagination = response.pagination;
+        const data = await response.data.data;
+        const pagination = await response.pagination;
 
         setProductList(data);
         setPagination(pagination);
