@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
+import { styled } from '@mui/system';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { styled } from '@mui/system';
 
 const BoxCom = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -47,7 +47,7 @@ function FilterByPrice({ onChange }) {
   const handleSubmit = () => {
     if (values.salePrice_gte === '' || values.salePrice_lte === '') return;
     if (values.salePrice_gte < 0 || values.salePrice_lte < 0) return;
-    if (values.salePrice_lte < values.salePrice_gte) return;
+    if (values.salePrice_lte <= values.salePrice_gte) return;
 
     if (onChange) onChange(values);
   };
@@ -60,7 +60,7 @@ function FilterByPrice({ onChange }) {
 
       <BoxCom2>
         <TextFieldCom name="salePrice_gte" value={values.salePrice_gte} onChange={handleChange} />
-        <SpanTag>-</SpanTag>
+        <SpanTag>đến</SpanTag>
         <TextFieldCom name="salePrice_lte" value={values.salePrice_lte} onChange={handleChange} />
       </BoxCom2>
 
