@@ -6,21 +6,17 @@ import React, { useState } from 'react';
 const BoxCom = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
-
 const BoxCom2 = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexFlow: 'row nowrap',
   alignItems: 'center',
-
   margin: `${theme.spacing(1)} 0px`,
 }));
-
 const TextFieldCom = styled(TextField)(({ theme }) => ({
   input: {
     padding: `${theme.spacing(0.5)} 14px`,
   },
 }));
-
 const SpanTag = styled('span')(({ theme }) => ({
   margin: `0px ${theme.spacing(1)}`,
 }));
@@ -46,8 +42,8 @@ function FilterByPrice({ onChange }) {
 
   const handleSubmit = () => {
     if (values.salePrice_gte === '' || values.salePrice_lte === '') return;
-    if (values.salePrice_gte < 0 || values.salePrice_lte < 0) return;
-    if (values.salePrice_lte <= values.salePrice_gte) return;
+    if (Number(values.salePrice_gte) < 0 || Number(values.salePrice_lte) < 0) return;
+    if (Number(values.salePrice_lte) <= Number(values.salePrice_gte)) return;
 
     if (onChange) onChange(values);
   };

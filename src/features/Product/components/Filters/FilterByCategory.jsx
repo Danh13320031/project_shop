@@ -12,17 +12,14 @@ const theme = createTheme({
     },
   },
 });
-
 const BoxCom = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
-
 const UlTag = styled('ul')(({ theme }) => ({
   padding: 0,
   margin: 0,
   listStyle: 'none',
 }));
-
 const LiTag = styled('li')(({ theme }) => ({
   padding: '7.5px 0px 7.5px 5px',
   transition: '0.4s ease-out',
@@ -60,7 +57,7 @@ function FilterByCategory({ onChange }) {
   }, []);
 
   const handleCategoryClick = (category) => {
-    if (onChange) onChange(category.id);
+    if (onChange) onChange(category.id, category.name);
   };
 
   return (

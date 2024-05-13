@@ -6,13 +6,11 @@ import React from 'react';
 const BoxCom = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
-
 const UlTag = styled('ul')(() => ({
   margin: 0,
   padding: 0,
   listStyle: 'none',
 }));
-
 const LiTag = styled('li')(({ theme }) => ({
   marginTop: -10,
 }));
